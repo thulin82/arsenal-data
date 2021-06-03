@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsenal Contract Length</title>
+    <link rel="stylesheet" href="/css/svenskafans.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap">
+</head>
+<body>
+    <div class="box">
+    <div class="box-top"><h2 class="box-top-title">Arsenals Spelarkontrakt</h2></div>
+        <div class="box-item">
+            {{#each result.squad}}
+                <img src={{ image }} height="26px" width="20px">  
+                {{name}} - {{prettifyDate contractUntil}} 
+                {{#if (isNotNull isLoan)}}<img src="/images/loan.png" height="16px" width="16px">{{else}}{{/if}}</br>
+            {{/each}}
+        </div>
+        <div class="box-bottom">
+            Data: <a href="https://rapidapi.com/apidojo/api/transfermarket" target="_blank">transfermarket.p.rapidapi.com</a>
+            , Kod: <a href="https://github.com/thulin82/arsenal-data" target="_blank">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
