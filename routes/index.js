@@ -1,37 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const https = require("https");
 const dotenv = require('dotenv');
+const axios = require('axios');
 
 dotenv.config();
 
 router.get('/', function (req, response) {
-    const options = {
-        "method": "GET",
-        "hostname": "transfermarket.p.rapidapi.com",
-        "port": null,
-        "path": "/clubs/get-squad?id=11",
-        "headers": {
+    const opt = {
+        headers: {
             "x-rapidapi-key": process.env.API_KEY,
             "x-rapidapi-host": process.env.API_HOST,
             "useQueryString": true
         }
     };
 
-    let data ="";
-
-    https.get(options, function(res) {
-        console.log("Connected");
-
-        res.on("data", chunk => {
-            data += chunk;
-        });
-
-        res.on("end", () => {
-            var json = JSON.parse(data);
+    axios.get(process.env.URL, opt)
+        .then((resp) => {
             response.set('Content-Type', 'text/html');
-            response.render('index', {result: json});
-        });
+            response.render('index', {result: resp.data});
+        })
+        .catch((error => {
+            console.log(error);
+        }));
+});
+
+router.get('/time', function (req, response) {
+    const opt = {
+        headers: {
+            "X-Auth-Token": process.env.API_KEY2,
+            'Accept': 'application/json'
+        }
+    };
+
+    axios.all([
+        axios.get(process.env.URL2, opt),
+        axios.get(process.env.URL3, opt)
+    ]).then(axios.spread((resp1, resp2) => {
+        response.set('Content-Type', 'text/html');
+        response.render('time', {past: resp1.data, future: resp2.data});
+    })).catch(error => {
+        console.log(error);
     });
 });
 
