@@ -9,7 +9,7 @@ router.get('/', function (req, response) {
     const opt = {
         headers: {
             "x-rapidapi-key": process.env.API_KEY,
-            "x-rapidapi-host": process.env.API_HOST,
+            "x-rapidapi-host": 'transfermarket.p.rapidapi.com',
             "useQueryString": true
         }
     };
