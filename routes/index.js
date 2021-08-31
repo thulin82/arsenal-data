@@ -16,6 +16,9 @@ router.get('/', function (req, response) {
 
     axios.get(process.env.URL, opt)
         .then((resp) => {
+            //sort response on contractUntil property
+            resp.data.squad.sort((a, b) => (a.contractUntil > b.contractUntil) ? 1 : -1);
+
             response.set('Content-Type', 'text/html');
             response.render('index', {result: resp.data});
         })
