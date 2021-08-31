@@ -22,7 +22,7 @@
                             </li>
                         {{/each}}
             5 Nästa Matcher
-                        {{#each future.matches}}
+                        {{#each (limit future.matches 5)}}
                             <li>
                                 <strong>{{ homeTeam.name }}</strong>
                                  vs

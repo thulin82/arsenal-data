@@ -15,6 +15,11 @@ hbs.registerHelper("isNotNull", function(value) {
     return value !== null;
 });
 
+hbs.registerHelper('limit', function (arr, limit) {
+    if (!Array.isArray(arr)) { return []; }
+    return arr.slice(0, limit);
+});
+
 const app = express();
 
 //Middleware
