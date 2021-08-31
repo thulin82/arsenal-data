@@ -16,10 +16,21 @@ $ git clone git@github.com:thulin82/arsenal-data.git
 $ npm install
 ```
 
-### Run app
+### Run backend
 
 ```
 $ npm start
+```
+
+### Environment variables
+In config/config.env add
+```
+API_KEY =
+URL =
+
+API_KEY2 =
+URL2 =
+URL3 =
 ```
 
 © Markus Thulin 2021-
