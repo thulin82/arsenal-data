@@ -20,7 +20,7 @@ router.get('/', function (req, response) {
             resp.data.squad.sort((a, b) => (a.contractUntil > b.contractUntil) ? 1 : -1);
 
             response.set('Content-Type', 'text/html');
-            response.render('index', {result: resp.data});
+            response.render('index', {club: "Arsenal", result: resp.data});
         })
         .catch((error => {
             console.log(error);
@@ -44,6 +44,28 @@ router.get('/time', function (req, response) {
     })).catch(error => {
         console.log(error);
     });
+});
+
+router.get('/malmo', function (req, response) {
+    const opt = {
+        headers: {
+            "x-rapidapi-key": process.env.API_KEY,
+            "x-rapidapi-host": 'transfermarket.p.rapidapi.com',
+            "useQueryString": true
+        }
+    };
+
+    axios.get(process.env.URL4, opt)
+        .then((resp) => {
+            //sort response on contractUntil property
+            resp.data.squad.sort((a, b) => (a.contractUntil > b.contractUntil) ? 1 : -1);
+
+            response.set('Content-Type', 'text/html');
+            response.render('index', {club: "Malmö FF", result: resp.data});
+        })
+        .catch((error => {
+            console.log(error);
+        }));
 });
 
 module.exports = router;
