@@ -5,6 +5,11 @@ const axios = require('axios');
 
 dotenv.config();
 
+/**
+ * Default Route, get Arsenal contract data
+ *
+ *
+*/
 router.get('/', function (req, response) {
     const opt = {
         headers: {
@@ -14,7 +19,7 @@ router.get('/', function (req, response) {
         }
     };
 
-    axios.get(process.env.URL, opt)
+    axios.get("https://transfermarket.p.rapidapi.com/clubs/get-squad?id=11", opt)
         .then((resp) => {
             //sort response on contractUntil property
             resp.data.squad.sort((a, b) => (a.contractUntil > b.contractUntil) ? 1 : -1);
@@ -27,6 +32,11 @@ router.get('/', function (req, response) {
         }));
 });
 
+/**
+ * /time Route, get last/next 5 Arsenal games
+ *
+ *
+*/
 router.get('/time', function (req, response) {
     const opt = {
         headers: {
@@ -36,8 +46,8 @@ router.get('/time', function (req, response) {
     };
 
     axios.all([
-        axios.get(process.env.URL2, opt),
-        axios.get(process.env.URL3, opt)
+        axios.get("https://api.football-data.org/v2/teams/57/matches?status=FINISHED&limit=5", opt),
+        axios.get("https://api.football-data.org/v2/teams/57/matches?status=SCHEDULED", opt)
     ]).then(axios.spread((resp1, resp2) => {
         response.set('Content-Type', 'text/html');
         response.render('time', {past: resp1.data, future: resp2.data});
@@ -46,6 +56,11 @@ router.get('/time', function (req, response) {
     });
 });
 
+/**
+ * /malmo Route, get Malmö FF contract data
+ *
+ *
+*/
 router.get('/malmo', function (req, response) {
     const opt = {
         headers: {
@@ -55,7 +70,7 @@ router.get('/malmo', function (req, response) {
         }
     };
 
-    axios.get(process.env.URL4, opt)
+    axios.get("https://transfermarket.p.rapidapi.com/clubs/get-squad?id=496", opt)
         .then((resp) => {
             //sort response on contractUntil property
             resp.data.squad.sort((a, b) => (a.contractUntil > b.contractUntil) ? 1 : -1);
