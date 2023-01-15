@@ -26,11 +26,7 @@ $ npm start
 In config/config.env add
 ```
 API_KEY =
-URL =
-
 API_KEY2 =
-URL2 =
-URL3 =
 ```
 
 © Markus Thulin 2021-
