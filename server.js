@@ -8,19 +8,29 @@ const apicache = require("apicache");
 dotenv.config({ path: "./config/config.env" });
 
 hbs.registerHelper("prettifyDate", function (timestamp) {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(timestamp * 1000).toLocaleDateString("en-GB", options);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(timestamp * 1000).toLocaleDateString("en-GB", options);
 });
 
 hbs.registerHelper("isNotNull", function (value) {
-    return value !== null;
+  return value !== null;
 });
 
 hbs.registerHelper("limit", function (arr, limit) {
-    if (!Array.isArray(arr)) {
-        return [];
-    }
-    return arr.slice(0, limit);
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+  return arr.slice(0, limit);
+});
+
+hbs.registerHelper("playerImageSrc", function (image) {
+  const placeholderPrefix = "data:image/gif;base64,R0lGODlhAQABA";
+
+  if (!image || image.startsWith(placeholderPrefix)) {
+    return "/images/player-fallback.svg";
+  }
+
+  return image;
 });
 
 const app = express();
