@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +8,34 @@
     <title>Arsenal Games</title>
     <link rel="icon" href="/images/Arsenal.png">
     <link rel="stylesheet" href="/css/svenskafans.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap">
 </head>
+
 <body>
     <div class="box">
-    <div class="box-top"><h2 class="box-top-title">Matcher</h2></div>
+        <div class="box-top">
+            <h2 class="box-top-title">Matcher</h2>
+        </div>
         <div class="box-item">
             5 Föregående Matcher
-                        {{#each past.matches}}
-                            <li>
-                                <strong>{{ homeTeam.name }}</strong>
-                                 vs
-                                <strong>{{ awayTeam.name }}</strong>
-                                {{score.fullTime.homeTeam}} - {{score.fullTime.awayTeam}}
-                            </li>
-                        {{/each}}
+            {{#each past.matches}}
+            <li>
+                <strong>{{ homeTeam.name }}</strong>
+                vs
+                <strong>{{ awayTeam.name }}</strong>
+                {{score.fullTime.homeTeam}} - {{score.fullTime.awayTeam}}
+            </li>
+            {{/each}}
             5 Nästa Matcher
-                        {{#each (limit future.matches 5)}}
-                            <li>
-                                <strong>{{ homeTeam.name }}</strong>
-                                 vs
-                                <strong>{{ awayTeam.name }}</strong>
-                                {{score.fullTime.homeTeam}} - {{score.fullTime.awayTeam}}
-                            </li>
-                        {{/each}}
+            {{#each (limit future.matches 5)}}
+            <li>
+                <strong>{{ homeTeam.name }}</strong>
+                vs
+                <strong>{{ awayTeam.name }}</strong>
+                {{score.fullTime.homeTeam}} - {{score.fullTime.awayTeam}}
+            </li>
+            {{/each}}
         </div>
         <div class="box-bottom">
             Data: <a href="https://www.football-data.org/" target="_blank">football-data.org</a>
@@ -38,4 +43,5 @@
         </div>
     </div>
 </body>
+
 </html>
